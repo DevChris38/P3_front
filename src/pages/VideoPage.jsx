@@ -12,7 +12,7 @@ function VideoPage() {
   useEffect(() => {
     (async () => {
       const videoCall = await fetch(
-        `https://p3-forked.vercel.app/api/videos/${params.id}`
+        `${import.meta.env.VITE_BACKEND_URL}/api/videos/${params.id}`
       );
       const videoResult = await videoCall.json();
       setVideoInfo(videoResult);

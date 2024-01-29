@@ -13,16 +13,18 @@ function Videos({ videoInfo }) {
   }, [isLiked]);
 
   const handleLike = async () => {
-    await fetch("https://p3-forked.vercel.app/api/videos/1/like/1", {
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/videos/1/like/1`, {
       method: "PUT",
     });
-    const videoCall = await fetch("https://p3-forked.vercel.app/api/videos/1");
+    const videoCall = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/api/videos/1`
+    );
     const videoResult = await videoCall.json();
     setLikes(videoResult.nbr_like);
 
     // Ask to BDD if user has like yet this video and store the information in "isLiked" state
     const videoIsLiked = await fetch(
-      "https://p3-forked.vercel.app/api/videos/1/like/1"
+      `${import.meta.env.VITE_BACKEND_URL}/api/videos/1/like/1`
     );
     const videoIsLikedJson = await videoIsLiked.json();
     setIsLiked(videoIsLikedJson);
